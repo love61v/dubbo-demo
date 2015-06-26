@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+	    http://www.springframework.org/schema/beans/spring-beans.xsd    
+	    http://code.alibabatech.com/schema/dubbo     
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 服务器提供者全局标识名 -->
+	<dubbo:application name="yconnect_provider" />
+
+	<!-- 使用zookeeper广播注册中心暴露服务地址 -->
+	<dubbo:registry protocol="zookeeper"
+		address="10.1.11.150:2181,10.1.11.151:2181,10.1.11.152:2181" check="false"></dubbo:registry>
+	
+	<!-- 用dubbo协议在10880端口暴露服务 -->
+	<dubbo:protocol name="dubbo" port="40880" />
+
+	<!-- service包扫描  -->
+	<dubbo:annotation package="cn.yconnect.service" />
+
+</beans>
+	
+	
+	
+
+	

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	http://code.alibabatech.com/schema/dubbo      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<context:annotation-config />
+	<dubbo:annotation package="cn.yconnect.service" />
+	 
+	<!-- 消费方应用名为yconnect-consumer消费 服务器提供者yconnect_provider的服务 -->
+	<dubbo:application name="yconnect-consumer" owner="yconnect_provider " />
+
+	<!-- 使用zookeeper服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="10.1.11.150:2181,10.1.11.151:2181,10.1.11.152:2181" check="true" />
+
+	<dubbo:reference id="noticeService" interface="cn.yconnect.service.NoticeService" />
+</beans>
